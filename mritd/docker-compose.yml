@@ -13,7 +13,6 @@ services:
       - jekyll
       - idea
       - yum
-      - gcr
       - piwik_app
       - radicale
     ports:
@@ -28,20 +27,13 @@ services:
   yum:
     image: mritd/yum
     restart: always  
-    volumes:
-      - /data/repo/centos:/usr/share/nginx/html/centos
-  gcr:
-    image: mritd/gcr.io
-    restart: always
-    volumes:
-      - /data/registry:/var/lib/registry
   piwik_db:
     image: mysql:5.7.17
     restart: always
     volumes:
       - /data/piwik/mysql/runtime:/var/lib/mysql
   piwik_app:
-    image: mritd/piwik:3.0.4
+    image: mritd/piwik:3.2.0
     restart: always
     links:
       - piwik_db
